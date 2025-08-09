@@ -7,14 +7,10 @@ namespace GameRoot
     // regardless of which one it was launched from.
     public class GameAutostarter
     {
-        public static string LaunchedScene {  get; private set; }
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         public static void AutostartGame()
         {
             var sceneName = SceneManager.GetActiveScene().name;
-            LaunchedScene = sceneName;
-
             if (sceneName != Scenes.BOOT)
                 SceneManager.LoadScene(Scenes.BOOT);
         }

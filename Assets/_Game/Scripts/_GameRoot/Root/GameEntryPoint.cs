@@ -30,10 +30,7 @@ namespace GameRoot
         // Starts the first scene the player will see.
         private void StartGame()
         {
-#if UNITY_EDITOR
-            var launchedScene = GameAutostarter.LaunchedScene;
-#endif
-
+            _sceneProvider.OpenRaceMode();
         }
     }
 }

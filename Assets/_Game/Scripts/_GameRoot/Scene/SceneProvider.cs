@@ -1,3 +1,4 @@
+using RaceMode;
 using Zenject;
 
 namespace GameRoot
@@ -12,6 +13,15 @@ namespace GameRoot
         public SceneProvider()
         {
             _sceneLoader = new SceneLoader();
+        }
+
+        public void OpenRaceMode()
+        {
+            var enterParams = new RaceModeEnterParams();
+            _currentSceneParams = enterParams;
+
+            _sceneLoader.LoadAndRunScene<RaceModeEntryPoint, RaceModeEnterParams>
+                (Scenes.RACE_MODE, enterParams);
         }
     }
 }
