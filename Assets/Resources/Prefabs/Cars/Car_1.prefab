@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738261408956024870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2751020363346880010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardPoint RL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ GameObject:
   - component: {fileID: 1157471552935315038}
   - component: {fileID: 3684242649286284747}
   - component: {fileID: 8709120617174519037}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,9 +171,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7379719468109155222}
   - component: {fileID: 8871847106642845306}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body Collider
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4992490531066003634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Center Of Mass_Air
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -254,7 +254,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3389339464243756139}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 5585272336801770808}
   - component: {fileID: 4663743473465155143}
   - component: {fileID: 1750404526881135352}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spoiler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +374,7 @@ GameObject:
   - component: {fileID: 7220264216564922501}
   - component: {fileID: 848212715884503906}
   - component: {fileID: 6937913485795767250}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 1771018950299142308}
   - component: {fileID: 5706609979960823290}
   - component: {fileID: 3473777746654129470}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FrontLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 510526368481170197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel RL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   - component: {fileID: 4573504095605983980}
   - component: {fileID: 6245180921399690189}
   - component: {fileID: 6330735720556564069}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RearLeftWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -662,7 +662,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7521185604965896286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardPoint FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7946219313065358475}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardPoint FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -726,7 +726,7 @@ GameObject:
   - component: {fileID: 1243140415684587514}
   - component: {fileID: 9033634397805469696}
   - component: {fileID: 5334788759301336280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CM vcam1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8257413411680067163}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel FL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   - component: {fileID: 3683298487132299308}
   - component: {fileID: 5598481731458478006}
   - component: {fileID: 6627061681479878255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -931,7 +931,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 385431730654433622}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wheels
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 6668491729440220029}
   - component: {fileID: 6488665339582649881}
   - component: {fileID: 9031943694070570483}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RearRightWheel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1052,7 +1052,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8549357812107346068}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1085,7 +1085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6381568226701702223}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: wheel FR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,9 +1124,9 @@ GameObject:
   - component: {fileID: 5240459726792288746}
   - component: {fileID: 5466656727931404929}
   - component: {fileID: 2284654267677441110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Car_1
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1609,7 +1609,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7752226972686291541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardPoint RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,4 +1,5 @@
 using RaceMode;
+using UnityEngine;
 using Zenject;
 
 namespace GameRoot
@@ -22,6 +23,21 @@ namespace GameRoot
 
             _sceneLoader.LoadAndRunScene<RaceModeEntryPoint, RaceModeEnterParams>
                 (Scenes.RACE_MODE, enterParams);
+        }
+
+        public bool TryRestartScene()
+        {
+            if (_currentSceneParams == null) return false;
+
+            switch (_currentSceneParams.SceneName)
+            {
+                case Scenes.RACE_MODE:
+                    _sceneLoader.LoadAndRunScene<RaceModeEntryPoint, RaceModeEnterParams>
+                        (Scenes.RACE_MODE, (RaceModeEnterParams)_currentSceneParams);
+                    return true;
+            }
+
+            return false;
         }
     }
 }
