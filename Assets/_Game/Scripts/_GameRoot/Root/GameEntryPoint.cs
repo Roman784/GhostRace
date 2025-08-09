@@ -12,6 +12,7 @@ namespace GameRoot
             Coroutines.Start(Run(enterParams));
         }
 
+        // Application initializing: loading data and setting up.
         public override IEnumerator Run<T>(T _)
         {
             SetAppSettings();
