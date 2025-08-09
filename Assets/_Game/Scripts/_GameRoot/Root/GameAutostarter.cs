@@ -11,8 +11,18 @@ namespace GameRoot
         public static void AutostartGame()
         {
             var sceneName = SceneManager.GetActiveScene().name;
+
+            if (!IsGameScene(sceneName)) return;
+
             if (sceneName != Scenes.BOOT)
                 SceneManager.LoadScene(Scenes.BOOT);
+        }
+
+        // To avoid interrupting the loading of a scene not from the current game when launching.
+        // For example, for demo scenes from assets.
+        private static bool IsGameScene(string name)
+        {
+            return name == Scenes.RACE_MODE || name == Scenes.BOOT;
         }
     }
 }
