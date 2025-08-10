@@ -19,6 +19,7 @@ namespace RecordingMode
         [SerializeField] private RecordingModeUI _uiPrefab;
         [SerializeField] private CountdownUI _countdownUIPrefab;
 
+        private Timer _countdownTimer;
         private CarMotionRecorder _recorder;
 
         public override IEnumerator Run<T>(T enterParams)
@@ -39,8 +40,8 @@ namespace RecordingMode
             _level.PlaceGhost(_playerCar); // Position of the ghost, as its path is currently being recorded.
 
             // Countdown at the beginning.
-            var timer = new Timer(1f, 2f, 3f);
-            var timerSignals = timer.Start();
+            _countdownTimer = new Timer(1f, 2f, 3f);
+            var timerSignals = _countdownTimer.Start();
             timerSignals
                 .Where(t => t == 3f)
                 .Subscribe(_ => _playerCar.UnlockControl());
@@ -72,6 +73,7 @@ namespace RecordingMode
 
         private void OnDestroy()
         {
+            _countdownTimer?.Stop();
             _recorder?.StopRecording();
         }
     }

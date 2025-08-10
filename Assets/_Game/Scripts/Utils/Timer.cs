@@ -7,6 +7,7 @@ namespace Utils
     public class Timer
     {
         private readonly float[] _timePoints;
+        private readonly CompositeDisposable _disposables = new();
 
         public Timer(params float[] timePoints)
         {
@@ -35,8 +36,14 @@ namespace Utils
                             if (currentIdx >= _timePoints.Length)
                                 observer.OnCompleted();
                         }
-                    });
+                    })
+                    .AddTo(_disposables);
             });
+        }
+
+        public void Stop()
+        {
+            _disposables?.Dispose();
         }
     }
 }

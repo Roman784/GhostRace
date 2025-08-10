@@ -20,6 +20,8 @@ namespace RaceMode
         [SerializeField] private CarTrackingUI _carTrackingUIPrefab;
         [SerializeField] private CountdownUI _countdownUIPrefab;
 
+        private Timer _countdownTimer;
+
         public override IEnumerator Run<T>(T enterParams)
         {
             if (enterParams is RaceModeEnterParams gameplayParams)
@@ -40,8 +42,8 @@ namespace RaceMode
             _level.PlaceGhost(_ghostCar);
 
             // Countdown at the beginning.
-            var timer = new Timer(1f, 2f, 3f);
-            var timerSignals = timer.Start();
+            _countdownTimer = new Timer(1f, 2f, 3f);
+            var timerSignals = _countdownTimer.Start();
             timerSignals
                 .Where(t => t == 3f)
                 .Subscribe(_ => _playerCar.UnlockControl());
