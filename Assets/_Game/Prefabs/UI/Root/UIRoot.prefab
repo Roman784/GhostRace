@@ -330,10 +330,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _view: {fileID: 1303614216342760666}
   _showing:
-    Duration: 0.25
+    Duration: 0.15
     Ease: 6
   _hiding:
-    Duration: 0.2
+    Duration: 0.15
     Ease: 6
 --- !u!1 &7877073543649811959
 GameObject:

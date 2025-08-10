@@ -115,6 +115,8 @@ GameObject:
   - component: {fileID: 1437297207372322446}
   - component: {fileID: 9211329589624918809}
   - component: {fileID: 4873210058644472486}
+  - component: {fileID: 4905220557653064586}
+  - component: {fileID: 4142054838356464798}
   m_Layer: 0
   m_Name: StopRecordingButton
   m_TagString: Untagged
@@ -224,6 +226,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4905220557653064586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183703056460412678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.35686275}
+  m_EffectDistance: {x: 6, y: -8}
+  m_UseGraphicAlpha: 1
+--- !u!114 &4142054838356464798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183703056460412678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3847f7eb841fbee458831baf71f7be05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 3946404875529523382}
+  _zoomScale: 1.05
+  _duration: 0.2
+  _ease: 27
 --- !u!1 &5468954236836776217
 GameObject:
   m_ObjectHideFlags: 0
