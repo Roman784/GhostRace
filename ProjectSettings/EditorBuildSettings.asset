@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Game/Scenes/RaceMode.unity
     guid: aa92401eb3baa434e954fa5fb0b98389
+  - enabled: 1
+    path: Assets/_Game/Scenes/RecordingMode.unity
+    guid: b3d1efa92db95264690e1cd80e2575e9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

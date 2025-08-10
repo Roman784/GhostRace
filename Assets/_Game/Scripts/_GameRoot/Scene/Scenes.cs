@@ -4,5 +4,6 @@ namespace GameRoot
     {
         public const string BOOT = "Boot";
         public const string RACE_MODE = "RaceMode";
+        public const string RECORDING_MODE = "RecordingMode";
     }
 }

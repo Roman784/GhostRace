@@ -31,7 +31,7 @@ namespace GameRoot
         // Starts the first scene the player will see.
         private void StartGame()
         {
-            _sceneProvider.OpenRaceMode();
+            _sceneProvider.OpenRecordingMode();
         }
     }
 }

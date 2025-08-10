@@ -11,6 +11,7 @@ namespace RaceMode
 {
     public class RaceModeEntryPoint : SceneEntryPoint
     {
+        [Header("Level")]
         [SerializeField] private Level _level;
         [SerializeField] private Car _playerCar;
         [SerializeField] private Car _ghostCar;

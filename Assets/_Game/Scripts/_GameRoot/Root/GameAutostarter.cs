@@ -22,7 +22,9 @@ namespace GameRoot
         // For example, for demo scenes from assets.
         private static bool IsGameScene(string name)
         {
-            return name == Scenes.RACE_MODE || name == Scenes.BOOT;
+            return name == Scenes.BOOT || 
+                   name == Scenes.RACE_MODE || 
+                   name == Scenes.RECORDING_MODE;
         }
     }
 }

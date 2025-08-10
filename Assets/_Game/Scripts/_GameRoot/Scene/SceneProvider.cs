@@ -1,4 +1,5 @@
 using RaceMode;
+using RecordingMode;
 using UI;
 using UnityEngine;
 using Zenject;
@@ -15,6 +16,15 @@ namespace GameRoot
         public SceneProvider(UIRoot ui)
         {
             _sceneLoader = new SceneLoader(ui);
+        }
+
+        public void OpenRecordingMode()
+        {
+            var enterParams = new RecordingModeEnterParams();
+            _currentSceneParams = enterParams;
+
+            _sceneLoader.LoadAndRunScene<RecordingModeEntryPoint, RecordingModeEnterParams>
+                (Scenes.RECORDING_MODE, enterParams);
         }
 
         public void OpenRaceMode()
@@ -35,6 +45,10 @@ namespace GameRoot
                 case Scenes.RACE_MODE:
                     _sceneLoader.LoadAndRunScene<RaceModeEntryPoint, RaceModeEnterParams>
                         (Scenes.RACE_MODE, (RaceModeEnterParams)_currentSceneParams);
+                    return true;
+                case Scenes.RECORDING_MODE:
+                    _sceneLoader.LoadAndRunScene<RecordingModeEntryPoint, RecordingModeEnterParams>
+                        (Scenes.RECORDING_MODE, (RecordingModeEnterParams)_currentSceneParams);
                     return true;
             }
 
