@@ -43,7 +43,7 @@ namespace Utils
 
         public void Stop()
         {
-            _disposables?.Dispose();
+            _disposables.Dispose();
         }
     }
 }

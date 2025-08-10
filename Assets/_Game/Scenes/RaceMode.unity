@@ -269,6 +269,7 @@ MonoBehaviour:
   _level: {fileID: 8330573388044187341}
   _playerCar: {fileID: 4416252798813734348}
   _ghostCar: {fileID: 3561735565476582898}
+  _uiPrefab: {fileID: 1595699976584654999, guid: 548196e258fa67d4983661b6ca35e485, type: 3}
   _carTrackingUIPrefab: {fileID: 7122707327997348987, guid: 27fe5611839021445a781cf3cf0277b9, type: 3}
   _countdownUIPrefab: {fileID: 1444223935264178175, guid: 51ffde0ed24be9c42b5edd16d520fe25, type: 3}
 --- !u!1001 &119488796

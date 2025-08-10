@@ -17,9 +17,11 @@ namespace RaceMode
         [SerializeField] private Car _ghostCar;
 
         [Header("UI")]
+        [SerializeField] private RaceModeUI _uiPrefab;
         [SerializeField] private CarTrackingUI _carTrackingUIPrefab;
         [SerializeField] private CountdownUI _countdownUIPrefab;
 
+        private readonly CompositeDisposable _disposables = new();
         private Timer _countdownTimer;
 
         public override IEnumerator Run<T>(T enterParams)
@@ -46,12 +48,22 @@ namespace RaceMode
             var timerSignals = _countdownTimer.Start();
             timerSignals
                 .Where(t => t == 3f)
-                .Subscribe(_ => _playerCar.UnlockControl());
+                .Subscribe(_ => _playerCar.UnlockControl())
+                .AddTo(_disposables);
 
-            // Ghost path replaying.
+            // Ghost motion replaying.
             new CarMotionReplayer().StartReplaying(_ghostCar, enterParams.Records);
 
             // UI.
+            // Main ui on scene.
+            var ui = Instantiate(_uiPrefab);
+            _uiRoot.AttachFullscreenUI(ui);
+
+            // Open recording mode.
+            ui.OpenRecordingModeSignal
+                .Subscribe(_ => _sceneProvider.OpenRecordingMode())
+                .AddTo(_disposables);
+
             // Car tracking.
             var carTrackingUI = Instantiate(_carTrackingUIPrefab);
             _uiRoot.AttachFullscreenUI(carTrackingUI);
@@ -68,6 +80,12 @@ namespace RaceMode
             isLoaded = true;
 
             yield return new WaitUntil(() => isLoaded);
+        }
+
+        private void OnDestroy()
+        {
+            _disposables.Dispose();
+            _countdownTimer?.Stop();
         }
     }
 }

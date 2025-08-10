@@ -19,6 +19,8 @@ namespace RecordingMode
         [SerializeField] private RecordingModeUI _uiPrefab;
         [SerializeField] private CountdownUI _countdownUIPrefab;
 
+        private readonly CompositeDisposable _disposables = new();
+
         private Timer _countdownTimer;
         private CarMotionRecorder _recorder;
 
@@ -44,13 +46,15 @@ namespace RecordingMode
             var timerSignals = _countdownTimer.Start();
             timerSignals
                 .Where(t => t == 3f)
-                .Subscribe(_ => _playerCar.UnlockControl());
+                .Subscribe(_ => _playerCar.UnlockControl())
+                .AddTo(_disposables);
 
             // Motion recording.
             _recorder = new CarMotionRecorder();
             _recorder.StartRecording(_playerCar, 0.1f);
 
             // UI.
+            // Main ui on scene.
             var ui = Instantiate(_uiPrefab);
             _uiRoot.AttachFullscreenUI(ui);
 
@@ -59,7 +63,8 @@ namespace RecordingMode
             {
                 var records = _recorder.StopRecording();
                 _sceneProvider.OpenRaceMode(records);
-            });
+            })
+            .AddTo(_disposables);
 
             // Countdown at the beginning.
             var countdownUI = Instantiate(_countdownUIPrefab);
@@ -73,6 +78,7 @@ namespace RecordingMode
 
         private void OnDestroy()
         {
+            _disposables.Dispose();
             _countdownTimer?.Stop();
             _recorder?.StopRecording();
         }
