@@ -12,7 +12,7 @@ namespace RaceMode
     public class RaceModeEntryPoint : SceneEntryPoint
     {
         [SerializeField] private Level _level;
-        [SerializeField] private Car _car;
+        [SerializeField] private Car _playerCar;
         [SerializeField] private Car _ghostCar;
 
         [Header("UI")]
@@ -33,21 +33,21 @@ namespace RaceMode
             var isLoaded = false;
 
             // Cars.
-            _car.LockControl();
+            _playerCar.LockControl();
 
-            _level.PlaceCar(_car);
-            _level.PlaceCar(_ghostCar);
+            _level.PlacePlayer(_playerCar);
+            _level.PlaceGhost(_ghostCar);
 
             // Countdown at the beginning.
             var timer = new Timer(1f, 2f, 3f);
             var timerSignals = timer.Start();
             timerSignals
                 .Where(t => t == 3f)
-                .Subscribe(_ => _car.UnlockControl());
+                .Subscribe(_ => _playerCar.UnlockControl());
 
             // TEST <-----
             var recorder = new CarMotionRecorder();
-            recorder.StartRecording(_car, 0.1f);
+            recorder.StartRecording(_playerCar, 0.1f);
             Observable.Timer(TimeSpan.FromSeconds(15)).Subscribe(_ =>
             {
                 var records = recorder.StopRecording();
@@ -61,7 +61,7 @@ namespace RaceMode
             _uiRoot.AttachFullscreenUI(carTrackingUI);
             carTrackingUI.Init();
 
-            carTrackingUI.AddTracker(_car.TrackerPoint, _car.TrackerPrefab);
+            carTrackingUI.AddTracker(_playerCar.TrackerPoint, _playerCar.TrackerPrefab);
             carTrackingUI.AddTracker(_ghostCar.TrackerPoint, _ghostCar.TrackerPrefab);
 
             // Countdown at the beginning.

@@ -4,12 +4,23 @@ namespace Gameplay
 {
     public class Level : MonoBehaviour
     {
-        [SerializeField] private Transform _carInitialPoint;
+        [SerializeField] private Transform _playerInitialPoint;
+        [SerializeField] private Transform _ghostInitialPoint;
 
-        public void PlaceCar(Car car)
+        public void PlacePlayer(Car car)
         {
-            car.transform.position = _carInitialPoint.position;
-            car.transform.rotation = _carInitialPoint.rotation;
+            PlaceCar(car, _playerInitialPoint);
+        }
+
+        public void PlaceGhost(Car car)
+        {
+            PlaceCar(car, _ghostInitialPoint);
+        }
+
+        private void PlaceCar(Car car, Transform point)
+        {
+            car.transform.position = point.position;
+            car.transform.rotation = point.rotation;
         }
     }
 }
