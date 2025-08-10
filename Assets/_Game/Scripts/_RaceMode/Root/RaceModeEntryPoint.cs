@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using UI;
 using UnityEngine;
+using Utils;
 
 namespace RaceMode
 {
@@ -16,6 +17,7 @@ namespace RaceMode
 
         [Header("UI")]
         [SerializeField] private CarTrackingUI _carTrackingUIPrefab;
+        [SerializeField] private CountdownUI _countdownUIPrefab;
 
         public override IEnumerator Run<T>(T enterParams)
         {
@@ -30,8 +32,18 @@ namespace RaceMode
         {
             var isLoaded = false;
 
+            // Cars.
+            _car.LockControl();
+
             _level.PlaceCar(_car);
             _level.PlaceCar(_ghostCar);
+
+            // Countdown at the beginning.
+            var timer = new Timer(1f, 2f, 3f);
+            var timerSignals = timer.Start();
+            timerSignals
+                .Where(t => t == 3f)
+                .Subscribe(_ => _car.UnlockControl());
 
             // TEST <-----
             var recorder = new CarMotionRecorder();
@@ -45,12 +57,17 @@ namespace RaceMode
 
             // UI.
             // Car tracking.
-            var _carTrackingUI = Instantiate(_carTrackingUIPrefab);
-            _uiRoot.AttachFullscreenUI(_carTrackingUI);
-            _carTrackingUI.Init();
+            var carTrackingUI = Instantiate(_carTrackingUIPrefab);
+            _uiRoot.AttachFullscreenUI(carTrackingUI);
+            carTrackingUI.Init();
 
-            _carTrackingUI.AddTracker(_car.TrackerPoint, _car.TrackerPrefab);
-            _carTrackingUI.AddTracker(_ghostCar.TrackerPoint, _ghostCar.TrackerPrefab);
+            carTrackingUI.AddTracker(_car.TrackerPoint, _car.TrackerPrefab);
+            carTrackingUI.AddTracker(_ghostCar.TrackerPoint, _ghostCar.TrackerPrefab);
+
+            // Countdown at the beginning.
+            var countdownUI = Instantiate(_countdownUIPrefab);
+            _uiRoot.AttachFullscreenUI(countdownUI);
+            countdownUI.BindView(3, timerSignals);
 
             isLoaded = true;
 

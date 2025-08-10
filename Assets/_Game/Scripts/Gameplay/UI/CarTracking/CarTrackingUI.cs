@@ -5,7 +5,7 @@ namespace UI
 {
     public class CarTrackingUI : SceneUI
     {
-        private const float TRACKING_SPEED = 20f;
+        private const float TRACKING_SPEED = 14f;
 
         [SerializeField] private Canvas _canvas;
 
