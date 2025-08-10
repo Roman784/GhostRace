@@ -1,19 +1,20 @@
 using RaceMode;
+using UI;
 using UnityEngine;
 using Zenject;
 
 namespace GameRoot
 {
     public class SceneProvider
-    { 
+    {
         private readonly SceneLoader _sceneLoader;
 
         private SceneEnterParams _currentSceneParams;
 
         [Inject]
-        public SceneProvider()
+        public SceneProvider(UIRoot ui)
         {
-            _sceneLoader = new SceneLoader();
+            _sceneLoader = new SceneLoader(ui);
         }
 
         public void OpenRaceMode()
