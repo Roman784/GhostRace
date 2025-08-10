@@ -1,5 +1,6 @@
 using Gameplay;
 using GameRoot;
+using R3;
 using System;
 using System.Collections;
 using UI;
@@ -11,6 +12,7 @@ namespace RaceMode
     {
         [SerializeField] private Level _level;
         [SerializeField] private Car _car;
+        [SerializeField] private Car _ghostCar;
 
         [Header("UI")]
         [SerializeField] private CarTrackingUI _carTrackingUIPrefab;
@@ -29,6 +31,16 @@ namespace RaceMode
             var isLoaded = false;
 
             _level.PlaceCar(_car);
+
+            // TEST <-----
+            var recorder = new CarMotionRecorder();
+            recorder.StartRecording(_car, 0.1f);
+            Observable.Timer(TimeSpan.FromSeconds(15)).Subscribe(_ =>
+            {
+                var records = recorder.StopRecording();
+                new CarMotionReplayer().StartReplaying(_ghostCar, records);
+            });
+            // -----------
 
             // UI.
             // Car tracking.
