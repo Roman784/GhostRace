@@ -1,3 +1,4 @@
+using Gameplay;
 using RaceMode;
 using RecordingMode;
 using UI;
@@ -27,9 +28,9 @@ namespace GameRoot
                 (Scenes.RECORDING_MODE, enterParams);
         }
 
-        public void OpenRaceMode()
+        public void OpenRaceMode(CarRecordsData records)
         {
-            var enterParams = new RaceModeEnterParams();
+            var enterParams = new RaceModeEnterParams(records);
             _currentSceneParams = enterParams;
 
             _sceneLoader.LoadAndRunScene<RaceModeEntryPoint, RaceModeEnterParams>

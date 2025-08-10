@@ -46,15 +46,8 @@ namespace RaceMode
                 .Where(t => t == 3f)
                 .Subscribe(_ => _playerCar.UnlockControl());
 
-            // TEST <-----
-            var recorder = new CarMotionRecorder();
-            recorder.StartRecording(_playerCar, 0.1f);
-            Observable.Timer(TimeSpan.FromSeconds(15)).Subscribe(_ =>
-            {
-                var records = recorder.StopRecording();
-                new CarMotionReplayer().StartReplaying(_ghostCar, records);
-            });
-            // -----------
+            // Ghost path replaying.
+            new CarMotionReplayer().StartReplaying(_ghostCar, enterParams.Records);
 
             // UI.
             // Car tracking.

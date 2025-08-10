@@ -16,7 +16,10 @@ namespace RecordingMode
         [SerializeField] private Car _playerCar;
 
         [Header("UI")]
+        [SerializeField] private RecordingModeUI _uiPrefab;
         [SerializeField] private CountdownUI _countdownUIPrefab;
+
+        private CarMotionRecorder _recorder;
 
         public override IEnumerator Run<T>(T enterParams)
         {
@@ -42,7 +45,21 @@ namespace RecordingMode
                 .Where(t => t == 3f)
                 .Subscribe(_ => _playerCar.UnlockControl());
 
+            // Motion recording.
+            _recorder = new CarMotionRecorder();
+            _recorder.StartRecording(_playerCar, 0.1f);
+
             // UI.
+            var ui = Instantiate(_uiPrefab);
+            _uiRoot.AttachFullscreenUI(ui);
+
+            // Stop recording.
+            ui.StopRecordingSignal.Subscribe(_ =>
+            {
+                var records = _recorder.StopRecording();
+                _sceneProvider.OpenRaceMode(records);
+            });
+
             // Countdown at the beginning.
             var countdownUI = Instantiate(_countdownUIPrefab);
             _uiRoot.AttachFullscreenUI(countdownUI);
@@ -51,6 +68,11 @@ namespace RecordingMode
             isLoaded = true;
 
             yield return new WaitUntil(() => isLoaded);
+        }
+
+        private void OnDestroy()
+        {
+            _recorder?.StopRecording();
         }
     }
 }

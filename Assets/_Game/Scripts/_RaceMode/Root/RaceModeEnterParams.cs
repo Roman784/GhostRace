@@ -1,11 +1,15 @@
+using Gameplay;
 using GameRoot;
 
 namespace RaceMode
 {
     public class RaceModeEnterParams : SceneEnterParams
     {
-        public RaceModeEnterParams() : base(Scenes.RACE_MODE)
+        public readonly CarRecordsData Records;
+
+        public RaceModeEnterParams(CarRecordsData records) : base(Scenes.RACE_MODE)
         {
+            Records = records;
         }
     }
 }

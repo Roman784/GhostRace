@@ -268,6 +268,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: {fileID: 8330573388044187341}
   _playerCar: {fileID: 4416252798813734348}
+  _uiPrefab: {fileID: 6217284350072018127, guid: 05d32fc00e28a484a8df8c713509c79f, type: 3}
   _countdownUIPrefab: {fileID: 1444223935264178175, guid: 51ffde0ed24be9c42b5edd16d520fe25, type: 3}
 --- !u!1001 &119488796
 PrefabInstance:
