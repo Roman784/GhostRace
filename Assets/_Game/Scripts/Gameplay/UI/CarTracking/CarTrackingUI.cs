@@ -5,9 +5,9 @@ namespace UI
 {
     public class CarTrackingUI : SceneUI
     {
-        private const float TRACKING_SPEED = 8f;
+        private const float TRACKING_SPEED = 20f;
 
-        [SerializeField] private RectTransform _viewport;
+        [SerializeField] private Canvas _canvas;
 
         private HashSet<(CarTracker, Transform)> _trackers = new();
         private Camera _camera;
@@ -25,7 +25,7 @@ namespace UI
         public void AddTracker(Transform target, CarTracker trackerPrefab)
         {
             var tracker = CreateTracker(trackerPrefab);
-            tracker.transform.SetParent(_viewport, false);
+            tracker.transform.SetParent(_canvas.transform, false);
 
             tracker.Move(GetTrackerPosition(target.position));
 
@@ -58,6 +58,7 @@ namespace UI
                 var positionOnScreen = GetTrackerPosition(target.position);
                 var position = Vector2.Lerp(tracker.Position, positionOnScreen, TRACKING_SPEED * deltaTime);
 
+                tracker.gameObject.SetActive(IsTargetVisible(target.position));
                 tracker.Move(position);
             }
         }
@@ -65,15 +66,28 @@ namespace UI
         // Tracker position on the canvas.
         private Vector2 GetTrackerPosition(Vector3 targetPosition)
         {
-            Vector2 screenPoint = _camera.WorldToViewportPoint(targetPosition);
+            var screenPosition = _camera.WorldToScreenPoint(targetPosition);
 
-            var viewportSize = _viewport.sizeDelta;
-            screenPoint.x *= viewportSize.x;
-            screenPoint.y *= viewportSize.y;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                _canvas.GetComponent<RectTransform>(),
+                screenPosition,
+                _canvas.worldCamera,
+                out var position
+            );
 
-            screenPoint -= viewportSize * 0.5f;
+            return position;
+        }
 
-            return screenPoint;
+        // Is the target in the camera's viewport?
+        private bool IsTargetVisible(Vector3 worldPosition)
+        {
+            var viewportPoint = _camera.WorldToViewportPoint(worldPosition);
+
+            var isInFront = viewportPoint.z > 0;
+            var isOnScreen = viewportPoint.x > 0 && viewportPoint.x < 1 &&
+                             viewportPoint.y > 0 && viewportPoint.y < 1;
+
+            return isInFront && isOnScreen;
         }
     }
 }

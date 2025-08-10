@@ -31,6 +31,7 @@ namespace RaceMode
             var isLoaded = false;
 
             _level.PlaceCar(_car);
+            _level.PlaceCar(_ghostCar);
 
             // TEST <-----
             var recorder = new CarMotionRecorder();
@@ -49,6 +50,7 @@ namespace RaceMode
             _carTrackingUI.Init();
 
             _carTrackingUI.AddTracker(_car.TrackerPoint, _car.TrackerPrefab);
+            _carTrackingUI.AddTracker(_ghostCar.TrackerPoint, _ghostCar.TrackerPrefab);
 
             isLoaded = true;
 
