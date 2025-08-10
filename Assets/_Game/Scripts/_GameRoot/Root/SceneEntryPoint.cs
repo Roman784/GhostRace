@@ -1,4 +1,5 @@
 using System.Collections;
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -6,11 +7,13 @@ namespace GameRoot
 {
     public abstract class SceneEntryPoint : MonoBehaviour
     {
+        protected UIRoot _uiRoot;
         protected SceneProvider _sceneProvider;
 
         [Inject]
-        private void Construct(SceneProvider sceneProvider)
+        private void Construct(UIRoot uiRoot, SceneProvider sceneProvider)
         {
+            _uiRoot = uiRoot;
             _sceneProvider = sceneProvider;
         }
 

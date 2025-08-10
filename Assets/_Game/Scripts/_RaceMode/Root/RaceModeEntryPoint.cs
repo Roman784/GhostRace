@@ -2,6 +2,7 @@ using Gameplay;
 using GameRoot;
 using System;
 using System.Collections;
+using UI;
 using UnityEngine;
 
 namespace RaceMode
@@ -10,6 +11,9 @@ namespace RaceMode
     {
         [SerializeField] private Level _level;
         [SerializeField] private Car _car;
+
+        [Header("UI")]
+        [SerializeField] private CarTrackingUI _carTrackingUIPrefab;
 
         public override IEnumerator Run<T>(T enterParams)
         {
@@ -25,6 +29,14 @@ namespace RaceMode
             var isLoaded = false;
 
             _level.PlaceCar(_car);
+
+            // UI.
+            // Car tracking.
+            var _carTrackingUI = Instantiate(_carTrackingUIPrefab);
+            _uiRoot.AttachFullscreenUI(_carTrackingUI);
+            _carTrackingUI.Init();
+
+            _carTrackingUI.AddTracker(_car.TrackerPoint, _car.TrackerPrefab);
 
             isLoaded = true;
 

@@ -1,10 +1,9 @@
 using GameRoot;
-using UnityEngine;
 using Zenject;
 
 namespace UI
 {
-    public class SceneUI : MonoBehaviour
+    public class SceneUI : FullscreenUI
     {
         protected SceneProvider _sceneProvider;
 

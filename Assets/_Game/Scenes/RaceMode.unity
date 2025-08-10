@@ -264,6 +264,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: {fileID: 8330573388044187341}
   _car: {fileID: 4416252798813734348}
+  _carTrackingUIPrefab: {fileID: 7122707327997348987, guid: 27fe5611839021445a781cf3cf0277b9, type: 3}
 --- !u!1001 &119488796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14836,7 +14837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8386947045969715419, guid: d6317b269c55ec945b6a2f1eceab313c, type: 3}
       propertyPath: m_Name
-      value: Car_1
+      value: PlayerCar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,11 +24,14 @@ namespace GameRoot
                 LoadAndRunSceneRoutine<TEntryPoint, TEnterParams>(sceneName, enterParams));
         }
 
+        // Sequential loading and starting of a new scene.
         private IEnumerator LoadAndRunSceneRoutine<TEntryPoint, TEnterParams>(string sceneName, TEnterParams enterParams)
             where TEntryPoint : SceneEntryPoint
             where TEnterParams : SceneEnterParams
         {
             yield return _ui.ShowLoadingScreen();
+            
+            _ui.ClearAllContainers();
 
             yield return LoadScene(sceneName);
 
