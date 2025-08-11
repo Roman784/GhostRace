@@ -74,16 +74,14 @@ namespace RaceMode
                 .AddTo(_disposables);
 
             // Car tracking.
-            var carTrackingUI = Instantiate(_carTrackingUIPrefab);
-            _uiRoot.AttachFullscreenUI(carTrackingUI);
+            var carTrackingUI = _sceneUIFactory.Create(_carTrackingUIPrefab);
             carTrackingUI.Init();
 
             carTrackingUI.AddTracker(_playerCar.TrackerPoint, _playerCar.TrackerPrefab);
             carTrackingUI.AddTracker(_ghostCar.TrackerPoint, _ghostCar.TrackerPrefab);
 
             // Countdown at the beginning.
-            var countdownUI = Instantiate(_countdownUIPrefab);
-            _uiRoot.AttachFullscreenUI(countdownUI);
+            var countdownUI = _sceneUIFactory.Create(_countdownUIPrefab);
             countdownUI.BindView(3, timerSignals);
 
             isLoaded = true;

@@ -19,7 +19,7 @@ namespace UI
             yield return SetLoadingScreen(false);
         }
 
-        public void AttachFullscreenUI(FullscreenUI ui)
+        public void AttachSceneUI(SceneUI ui)
         {
             ui.transform.SetParent(_sceneUIContainer, false);
         }

@@ -18,7 +18,7 @@ namespace UI
         public T Create<T>(T prefab) where T : SceneUI
         {
             var newUI = _container.InstantiatePrefabForComponent<T>(prefab);
-            _uiRoot.AttachFullscreenUI(newUI);
+            _uiRoot.AttachSceneUI(newUI);
 
             return newUI;
         }

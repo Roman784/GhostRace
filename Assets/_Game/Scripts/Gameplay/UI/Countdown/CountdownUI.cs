@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace UI
 {
-    public class CountdownUI : FullscreenUI
+    public class CountdownUI : SceneUI
     {
         [SerializeField] private TMP_Text _view;
 

@@ -76,8 +76,7 @@ namespace RecordingMode
             .AddTo(_disposables);
 
             // Countdown at the beginning.
-            var countdownUI = Instantiate(_countdownUIPrefab);
-            _uiRoot.AttachFullscreenUI(countdownUI);
+            var countdownUI = _sceneUIFactory.Create(_countdownUIPrefab);
             countdownUI.BindView(3, timerSignals);
 
             isLoaded = true;
