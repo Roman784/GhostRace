@@ -9,39 +9,48 @@ namespace Utils
         private readonly float[] _timePoints;
         private readonly CompositeDisposable _disposables = new();
 
+        private Subject<float> _timerSignalsSubj;
+        public Observable<float> TimerSignals => _timerSignalsSubj?.AsObservable() ?? Observable.Never<float>();
+
         public Timer(params float[] timePoints)
         {
-            _timePoints = timePoints;
+            _timePoints = (float[])timePoints.Clone();
             Array.Sort(_timePoints);
+
+            _timerSignalsSubj = new Subject<float>().AddTo(_disposables);
         }
 
         public Observable<float> Start()
         {
-            return Observable.Create<float>(observer =>
-            {
-                var time = 0f;
-                var currentIdx = 0;
+            var time = 0f;
+            var currentIdx = 0;
 
-                return Observable.EveryUpdate()
-                    .Subscribe(_ =>
+            Observable.EveryUpdate()
+                .TakeWhile(_ => currentIdx < _timePoints.Length)
+                .Subscribe(_ =>
+                {
+                    time += Time.deltaTime;
+
+                    if (time >= _timePoints[currentIdx])
                     {
-                        time += Time.deltaTime;
+                        _timerSignalsSubj.OnNext(_timePoints[currentIdx]);
+                        currentIdx++;
 
-                        var timePoint = _timePoints[currentIdx];
-                        if (currentIdx < _timePoints.Length && time >= timePoint)
-                        {
-                            observer.OnNext(timePoint);
-                            currentIdx++;
+                        if (currentIdx >= _timePoints.Length)
+                            _timerSignalsSubj.OnCompleted();
+                    }
+                })
+                .AddTo(_disposables);
 
-                            if (currentIdx >= _timePoints.Length)
-                                observer.OnCompleted();
-                        }
-                    })
-                    .AddTo(_disposables);
-            });
+            return TimerSignals;
         }
 
         public void Stop()
+        {
+            _disposables.Clear();
+        }
+
+        public void Dispose()
         {
             _disposables.Dispose();
         }

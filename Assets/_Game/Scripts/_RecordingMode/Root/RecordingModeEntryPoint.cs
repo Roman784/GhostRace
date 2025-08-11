@@ -41,22 +41,32 @@ namespace RecordingMode
             _playerCar.LockControl();
             _level.PlaceGhost(_playerCar); // Position of the ghost, as its path is currently being recorded.
 
-            // Countdown at the beginning.
-            _countdownTimer = new Timer(1f, 2f, 3f);
-            var timerSignals = _countdownTimer.Start();
-            timerSignals
-                .Where(t => t == 3f)
-                .Subscribe(_ => _playerCar.UnlockControl())
-                .AddTo(_disposables);
-
             // Motion recording.
             _recorder = new CarMotionRecorder();
-            _recorder.StartRecording(_playerCar, 0.1f);
+
+            // Countdown at the beginning and start of the recording.
+            _countdownTimer = new Timer(1f, 2f, 3f);
+            var timerSignals = _countdownTimer.TimerSignals;
+            timerSignals
+                .Where(t => t == 3f)
+                .Subscribe(_ =>
+                {
+                    _playerCar.UnlockControl();
+                    _recorder.StartRecording(_playerCar, 0.1f);
+                })
+                .AddTo(_disposables);
 
             // UI.
             // Main ui on scene.
             var ui = Instantiate(_uiPrefab);
             _uiRoot.AttachFullscreenUI(ui);
+
+            // Start recording.
+            ui.StartRecordingSignal.Subscribe(_ =>
+            {
+                _countdownTimer.Start();
+            })
+            .AddTo(_disposables);
 
             // Stop recording.
             ui.StopRecordingSignal.Subscribe(_ =>

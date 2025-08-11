@@ -14,6 +14,11 @@ namespace Gameplay
             _replaying = Coroutines.Start(ReplayingRoutine(car, recordsData));
         }
 
+        public void StopReplaying()
+        {
+            Coroutines.Stop(_replaying);
+        }
+
         private IEnumerator ReplayingRoutine(Car car, CarRecordsData recordsData)
         {
             var deltaTime = recordsData.DeltaTime;

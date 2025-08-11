@@ -23,6 +23,7 @@ namespace RaceMode
 
         private readonly CompositeDisposable _disposables = new();
         private Timer _countdownTimer;
+        private CarMotionReplayer _replayer;
 
         public override IEnumerator Run<T>(T enterParams)
         {
@@ -43,16 +44,20 @@ namespace RaceMode
             _level.PlacePlayer(_playerCar);
             _level.PlaceGhost(_ghostCar);
 
-            // Countdown at the beginning.
+            // Ghost motion replaying.
+            _replayer = new CarMotionReplayer();
+
+            // Countdown at the beginning and start of the race.
             _countdownTimer = new Timer(1f, 2f, 3f);
             var timerSignals = _countdownTimer.Start();
             timerSignals
                 .Where(t => t == 3f)
-                .Subscribe(_ => _playerCar.UnlockControl())
+                .Subscribe(_ =>
+                {
+                    _playerCar.UnlockControl();
+                    _replayer.StartReplaying(_ghostCar, enterParams.Records);
+                })
                 .AddTo(_disposables);
-
-            // Ghost motion replaying.
-            new CarMotionReplayer().StartReplaying(_ghostCar, enterParams.Records);
 
             // UI.
             // Main ui on scene.
@@ -86,6 +91,7 @@ namespace RaceMode
         {
             _disposables.Dispose();
             _countdownTimer?.Stop();
+            _replayer?.StopReplaying();
         }
     }
 }
