@@ -9,12 +9,15 @@ namespace GameRoot
     {
         protected UIRoot _uiRoot;
         protected SceneProvider _sceneProvider;
+        protected SceneUIFactory _sceneUIFactory;
 
         [Inject]
-        private void Construct(UIRoot uiRoot, SceneProvider sceneProvider)
+        private void Construct(UIRoot uiRoot, SceneProvider sceneProvider,
+                               SceneUIFactory sceneUIFactory)
         {
             _uiRoot = uiRoot;
             _sceneProvider = sceneProvider;
+            _sceneUIFactory = sceneUIFactory;
         }
 
         public abstract IEnumerator Run<T>(T enterParams) where T : SceneEnterParams;

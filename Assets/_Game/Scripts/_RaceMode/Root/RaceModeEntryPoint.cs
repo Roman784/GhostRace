@@ -66,8 +66,7 @@ namespace RaceMode
 
             // UI.
             // Main ui on scene.
-            var ui = Instantiate(_uiPrefab);
-            _uiRoot.AttachFullscreenUI(ui);
+            var ui = _sceneUIFactory.Create(_uiPrefab);
 
             // Open recording mode.
             ui.OpenRecordingModeSignal

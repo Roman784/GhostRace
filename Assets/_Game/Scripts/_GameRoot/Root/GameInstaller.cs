@@ -11,12 +11,18 @@ namespace GameRoot
         public override void InstallBindings()
         {
             BindProviders();
+            BindFactories();
             BindUI();
         }
 
         private void BindProviders()
         {
             Container.Bind<SceneProvider>().AsSingle();
+        }
+
+        private void BindFactories()
+        {
+            Container.Bind<SceneUIFactory>().AsSingle();
         }
 
         private void BindUI()

@@ -58,8 +58,7 @@ namespace RecordingMode
 
             // UI.
             // Main ui on scene.
-            var ui = Instantiate(_uiPrefab);
-            _uiRoot.AttachFullscreenUI(ui);
+            var ui = _sceneUIFactory.Create(_uiPrefab);
 
             // Start recording.
             ui.StartRecordingSignal.Subscribe(_ =>
