@@ -12,5 +12,10 @@ namespace UI
         {
             _sceneProvider = sceneProvider;
         }
+
+        protected void RestartScene()
+        {
+            _sceneProvider.TryRestartScene();
+        }
     }
 }
