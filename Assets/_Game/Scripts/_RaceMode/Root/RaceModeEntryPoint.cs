@@ -69,11 +69,6 @@ namespace RaceMode
             // Main ui on scene.
             var ui = _sceneUIFactory.Create(_uiPrefab);
 
-            // Open recording mode.
-            ui.OpenRecordingModeSignal
-                .Subscribe(_ => _sceneProvider.OpenRecordingMode())
-                .AddTo(_disposables);
-
             // Car tracking.
             var carTrackingUI = _sceneUIFactory.Create(_carTrackingUIPrefab);
             carTrackingUI.Init();
