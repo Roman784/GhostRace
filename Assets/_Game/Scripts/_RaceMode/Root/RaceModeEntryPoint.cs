@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Gameplay;
 using GameRoot;
 using R3;
@@ -94,6 +95,9 @@ namespace RaceMode
             _disposables.Dispose();
             _countdownTimer?.Stop();
             _replayer?.StopReplaying();
+
+            DOTween.CompleteAll();
+            DOTween.KillAll();
         }
     }
 }

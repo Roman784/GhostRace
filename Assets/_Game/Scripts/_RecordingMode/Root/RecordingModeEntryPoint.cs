@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Gameplay;
 using GameRoot;
 using R3;
@@ -60,6 +61,14 @@ namespace RecordingMode
             // Main ui on scene.
             var ui = _sceneUIFactory.Create(_uiPrefab);
 
+            // Enable/disable stop recording button.
+            ui.DisableStopRecordingButton();
+            timerSignals.Where(t => t == 3).Subscribe(_ =>
+            {
+                ui.EnableStopRecordingButton();
+            })
+            .AddTo(_disposables);
+
             // Start recording.
             ui.StartRecordingSignal.Subscribe(_ =>
             {
@@ -89,6 +98,8 @@ namespace RecordingMode
             _disposables.Dispose();
             _countdownTimer?.Stop();
             _recorder?.StopRecording();
+
+            DOTween.KillAll();
         }
     }
 }

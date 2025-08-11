@@ -16,9 +16,24 @@ namespace UI
         {
             _openRecordingModeSignalSubj = new Subject<Unit>();
             _openRecordingModeButton.onClick.AddListener(() =>
-                _openRecordingModeSignalSubj.OnNext(Unit.Default));
+                InvokeOpenRecordingModeSignal());
 
             _restartRaceButton.onClick.AddListener(() => RestartScene());
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+                InvokeOpenRecordingModeSignal();
+
+            if (Input.GetKeyDown(KeyCode.R))
+                RestartScene();
+        }
+
+        private void InvokeOpenRecordingModeSignal()
+        {
+            _openRecordingModeSignalSubj.OnNext(Unit.Default);
+            _openRecordingModeSignalSubj.OnCompleted();
         }
     }
 }

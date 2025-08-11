@@ -13,6 +13,8 @@ namespace UI
         private Subject<Unit> _stopRecordingSignalSubj;
         private Subject<Unit> _startRecordingSignalSubj;
 
+        private bool _isStopRecordingButtonEnabled = true;
+
         public Observable<Unit> StopRecordingSignal => _stopRecordingSignalSubj;
         public Observable<Unit> StartRecordingSignal => _startRecordingSignalSubj;
 
@@ -21,18 +23,55 @@ namespace UI
             _stopRecordingSignalSubj = new Subject<Unit>();
             _startRecordingSignalSubj = new Subject<Unit>();
 
-            _stopRecordingButton.onClick.AddListener(() => 
-                _stopRecordingSignalSubj.OnNext(Unit.Default));
+            _stopRecordingButton.onClick.AddListener(() =>
+                InvokeStopRecordingSignal());
 
             _startRecordingButton.onClick.AddListener(() =>
-            {
-                _startRecordingSignalSubj.OnNext(Unit.Default);
+                InvokeStartRecordingSignal());
+        }
 
-                // Button disappearance animation.
-                _startRecordingButton.GetComponent<RectTransform>()
-                    .DOAnchorPosY(0f, 0.5f)
-                    .SetEase(Ease.InBack);
-            });
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+                InvokeStopRecordingSignal();
+
+            if (Input.GetKeyDown(KeyCode.Return))
+                InvokeStartRecordingSignal();
+        }
+
+        public void EnableStopRecordingButton()
+        {
+            _isStopRecordingButtonEnabled = true;
+            _stopRecordingButton
+                .GetComponent<CanvasGroup>()
+                .DOFade(1f, 0.25f).SetEase(Ease.OutQuad);
+        }
+
+        public void DisableStopRecordingButton()
+        {
+            _isStopRecordingButtonEnabled = false;
+            _stopRecordingButton
+                .GetComponent<CanvasGroup>()
+                .DOFade(0.5f, 0.25f).SetEase(Ease.OutQuad);
+        }
+
+        private void InvokeStopRecordingSignal()
+        {
+            if (!_isStopRecordingButtonEnabled) return;
+
+            _stopRecordingSignalSubj.OnNext(Unit.Default);
+            _stopRecordingSignalSubj.OnCompleted();
+        }
+
+        private void InvokeStartRecordingSignal()
+        {
+            _startRecordingSignalSubj.OnNext(Unit.Default);
+            _startRecordingSignalSubj.OnCompleted();
+
+            // Button disappearance animation.
+            _startRecordingButton.GetComponent<RectTransform>()
+                .DOAnchorPosY(0f, 0.5f)
+                .SetEase(Ease.InBack);
         }
     }
 }

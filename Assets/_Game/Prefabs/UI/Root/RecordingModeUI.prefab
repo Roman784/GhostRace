@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Start
+  m_text: Start (enter)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e86cb13e6d658b749b38ceb6a2e843c9, type: 2}
   m_sharedMaterial: {fileID: 6218606975914384334, guid: e86cb13e6d658b749b38ceb6a2e843c9, type: 2}
@@ -408,6 +408,7 @@ GameObject:
   - component: {fileID: 4873210058644472486}
   - component: {fileID: 4905220557653064586}
   - component: {fileID: 4142054838356464798}
+  - component: {fileID: 8553127130198672775}
   m_Layer: 0
   m_Name: StopRecordingButton
   m_TagString: Untagged
@@ -433,7 +434,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -64, y: -148.59}
-  m_SizeDelta: {x: 320, y: 96}
+  m_SizeDelta: {x: 348.3417, y: 96}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1437297207372322446
 CanvasRenderer:
@@ -548,6 +549,18 @@ MonoBehaviour:
   _zoomScale: 1.05
   _duration: 0.2
   _ease: 27
+--- !u!225 &8553127130198672775
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183703056460412678}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5468954236836776217
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stop recording
+  m_text: Stop recording (Q)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e86cb13e6d658b749b38ceb6a2e843c9, type: 2}
   m_sharedMaterial: {fileID: 6218606975914384334, guid: e86cb13e6d658b749b38ceb6a2e843c9, type: 2}
