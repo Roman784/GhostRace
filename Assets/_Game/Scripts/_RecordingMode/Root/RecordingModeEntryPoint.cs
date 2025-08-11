@@ -52,7 +52,7 @@ namespace RecordingMode
                 .Subscribe(_ =>
                 {
                     _playerCar.UnlockControl();
-                    _recorder.StartRecording(_playerCar, 0.1f);
+                    _recorder.StartRecording(_playerCar, 0.05f);
                 })
                 .AddTo(_disposables);
 

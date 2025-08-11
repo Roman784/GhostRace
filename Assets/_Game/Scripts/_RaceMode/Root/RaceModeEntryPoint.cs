@@ -55,7 +55,12 @@ namespace RaceMode
                 .Subscribe(_ =>
                 {
                     _playerCar.UnlockControl();
-                    _replayer.StartReplaying(_ghostCar, enterParams.Records);
+
+                    var ghostCarMotionActor = _ghostCar.GetComponent<CarMotionActor>();
+                    if (ghostCarMotionActor == null)
+                        throw new NullReferenceException($"Failed to get {typeof(CarMotionActor)} from ghost car!");
+
+                    _replayer.StartReplaying(ghostCarMotionActor, enterParams.Records);
                 })
                 .AddTo(_disposables);
 

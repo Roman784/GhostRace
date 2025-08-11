@@ -615,6 +615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197919087136548951}
   - component: {fileID: 2967751431147855360}
+  - component: {fileID: 8951054288747821212}
   m_Layer: 6
   m_Name: Car_Ghost
   m_TagString: Car
@@ -655,3 +656,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TrackerPrefab>k__BackingField: {fileID: 2561420046891476755, guid: bb3489c591fbbbf4cbd50afe3d5c1054, type: 3}
   <TrackerPoint>k__BackingField: {fileID: 3844757666122062736}
+--- !u!114 &8951054288747821212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8386947045969715419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34417916507accb44bd2b0c1bf018da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -174,7 +174,7 @@ namespace Ashsvp
 
             vehicleIsGrounded = (NumberOfGroundedWheels > 1);
 
-            if (vehicleIsGrounded)
+            if (vehicleIsGrounded && !rb.isKinematic)
             {
                 AddAcceleration(accelerationInput);
                 AddRollingResistance();

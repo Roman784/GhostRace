@@ -8,7 +8,7 @@ namespace Gameplay
     {
         private Coroutine _replaying;
 
-        public void StartReplaying(Car car, CarRecordsData recordsData)
+        public void StartReplaying(CarMotionActor car, CarRecordsData recordsData)
         {
             Coroutines.Stop(_replaying);
             _replaying = Coroutines.Start(ReplayingRoutine(car, recordsData));
@@ -19,7 +19,7 @@ namespace Gameplay
             Coroutines.Stop(_replaying);
         }
 
-        private IEnumerator ReplayingRoutine(Car car, CarRecordsData recordsData)
+        private IEnumerator ReplayingRoutine(CarMotionActor car, CarRecordsData recordsData)
         {
             var deltaTime = recordsData.DeltaTime;
             var records = recordsData.Records;
@@ -33,8 +33,9 @@ namespace Gameplay
                 var record = records[recordIdx];
                 if (time >= deltaTime * recordIdx)
                 {
-                    car.Move(record.Position, deltaTime);
-                    car.Rotate(record.Rotation, deltaTime);
+                    // Delta multiplication is needed to smooth out the movement so that there are no micro stops.
+                    car.Move(record.Position, deltaTime * 1.1f);
+                    car.Rotate(record.Rotation, deltaTime * 1.1f);
 
                     recordIdx++;
                 }
